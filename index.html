@@ -56,7 +56,6 @@
                 <button onclick="filterProjects('database')">Banco de Dados</button>
             </div>
             <div id="project-list"></div>
-            <button onclick="openProjectModal()" class="add-project-btn">Adicionar Projeto</button>
         </section>
 
         <section id="certificados" class="content">
@@ -73,29 +72,12 @@
                 <button type="submit">Enviar</button>
             </form>
             <div class="social-links">
-                <a href="https://github.com/danilloteeo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="mailto:seu-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </section>
     </main>
-
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeProjectModal()">×</span>
-            <h3>Adicionar Novo Projeto</h3>
-            <form id="project-form">
-                <input type="text" id="project-title" placeholder="Título" required>
-                <textarea id="project-description" placeholder="Descrição" required></textarea>
-                <select id="project-category" required>
-                    <option value="" disabled selected>Selecione a categoria</option>
-                    <option value="web">Web</option>
-                    <option value="database">Banco de Dados</option>
-                </select>
-                <input type="url" id="project-image" placeholder="URL da Imagem (opcional)">
-                <button type="submit">Salvar Projeto</button>
-            </form>
-        </div>
-    </div>
 
     <button id="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-chevron-up"></i></button>
 
