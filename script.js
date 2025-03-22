@@ -90,7 +90,7 @@ function showSection(sectionId) {
     {
     title: "Bootcamp Java - Santander",
     issuer: "DIO",
-    year: "2024",
+    year: "2025",
     link: "https://link-do-certificado.com"
     }
    ];
