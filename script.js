@@ -2,7 +2,24 @@ function showSection(sectionId) {
     const sections = document.querySelectorAll('.content');
     sections.forEach(section => section.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    themeToggle.innerHTML = `<i class="fas ${isDark ? 'fa-sun' : 'fa-moon'}"></i>`;
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+});
 
 const aboutInfo = {
     name: "Danillo Teodoro",
@@ -63,15 +80,39 @@ function displayExperience() {
     `).join('');
 }
 
+const certificates = [
+    {
+        title: "Bootcamp Java - Santander",
+        issuer: "DIO",
+        year: "2024",
+        link: "https://link-do-certificado.com"
+    }
+];
+
+function displayCertificates() {
+    const certificatesList = document.getElementById('certificates-list');
+    certificatesList.innerHTML = certificates.map(cert => `
+        <div class="certificate-item">
+            <i class="fas fa-certificate"></i>
+            <div>
+                <h3>${cert.title}</h3>
+                <p>Emitido por: ${cert.issuer} - ${cert.year}</p>
+                <a href="${cert.link}" target="_blank">Ver Certificado</a>
+            </div>
+        </div>
+    `).join('');
+}
+
 let projects = JSON.parse(localStorage.getItem('projects')) || [
-    { title: "Edição de Tabelas", description: "Edição de tabelas no banco de dados do sistema de controle rural da Lampa Software", category: "database" },
-    { title: "Estudos Java", description: "Bootcamp Santander na DIO para aprendizado de Java", category: "web" }
+    { title: "Edição de Tabelas", description: "Edição de tabelas no banco de dados do sistema de controle rural da Lampa Software", category: "database", image: "https://via.placeholder.com/300x150" },
+    { title: "Estudos Java", description: "Bootcamp Santander na DIO para aprendizado de Java", category: "web", image: "https://via.placeholder.com/300x150" }
 ];
 
 function displayProjects(filteredProjects = projects) {
     const projectList = document.getElementById('project-list');
     projectList.innerHTML = filteredProjects.map(project => `
         <div class="project-item" data-category="${project.category}">
+            ${project.image ? `<img src="${project.image}" alt="${project.title}">` : ''}
             <h3>${project.title}</h3>
             <p>${project.description}</p>
             <small>Categoria: ${project.category === 'web' ? 'Web' : 'Banco de Dados'}</small>
@@ -92,19 +133,32 @@ function filterProjects(category) {
     }
 }
 
-function addProject() {
-    const title = prompt('Digite o título do projeto:');
-    const description = prompt('Digite a descrição do projeto:');
-    const category = prompt('Digite a categoria (web ou database):').toLowerCase();
+const projectModal = document.getElementById('project-modal');
+function openProjectModal() {
+    projectModal.classList.add('active');
+}
 
-    if (title && description && (category === 'web' || category === 'database')) {
-        projects.push({ title, description, category });
+function closeProjectModal() {
+    projectModal.classList.remove('active');
+    document.getElementById('project-form').reset();
+}
+
+document.getElementById('project-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('project-title').value;
+    const description = document.getElementById('project-description').value;
+    const category = document.getElementById('project-category').value;
+    const image = document.getElementById('project-image').value || "https://via.placeholder.com/300x150";
+
+    if (title && description && category) {
+        projects.push({ title, description, category, image });
         localStorage.setItem('projects', JSON.stringify(projects));
         displayProjects();
+        closeProjectModal();
     } else {
-        alert('Por favor, preencha todos os campos corretamente. Categoria deve ser "web" ou "database".');
+        alert('Por favor, preencha todos os campos obrigatórios.');
     }
-}
+});
 
 document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -112,11 +166,24 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     this.reset();
 });
 
+const backToTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 window.onload = function() {
     showSection('sobre');
     displayAbout();
     displaySkills();
     displayExperience();
+    displayCertificates();
     displayProjects();
-    document.querySelector('.filter-buttons button:first-child').classList.add('active');
 };
