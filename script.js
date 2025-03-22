@@ -91,7 +91,7 @@ function showSection(sectionId) {
     title: "Bootcamp Java - Santander",
     issuer: "DIO",
     year: "2025",
-    link: "https://link-do-certificado.com"
+    link: "https://hermes.dio.me/certificates/SU9LNSGI.pdf"
     }
    ];
    
