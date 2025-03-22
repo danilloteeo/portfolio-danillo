@@ -41,7 +41,7 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+nav a:hover, nav a:focus {
     color: #ecf0f1;
 }
 
@@ -81,6 +81,44 @@ h2 {
     color: #555;
 }
 
+#skills-list, #experience-list {
+    margin-top: 1rem;
+}
+
+.skill-item, .experience-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.skill-item i, .experience-item i {
+    color: #3498db;
+    font-size: 1.5rem;
+}
+
+.filter-buttons {
+    margin-bottom: 1.5rem;
+}
+
+.filter-buttons button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.filter-buttons button:hover, .filter-buttons button.active {
+    background: #3498db;
+    color: white;
+}
+
 #project-list {
     margin-bottom: 1.5rem;
 }
@@ -102,6 +140,14 @@ h2 {
 .project-item h3 {
     color: #2c3e50;
     margin-bottom: 0.5rem;
+}
+
+.add-project-btn {
+    background: #2ecc71;
+}
+
+.add-project-btn:hover {
+    background: #27ae60;
 }
 
 form {
@@ -148,6 +194,23 @@ button:hover {
     transform: translateY(-2px);
 }
 
+.social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-links a {
+    color: #3498db;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover, .social-links a:focus {
+    color: #2980b9;
+}
+
 footer {
     background: linear-gradient(135deg, #2c3e50, #3498db);
     color: white;
@@ -168,145 +231,43 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    nav ul li {
-        margin: 0 1rem;
-    }
-
-    main {
-        padding: 2.5rem 1.5rem;
-    }
-
-    .content {
-        padding: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    #about-content {
-        max-width: 100%;
-    }
+    header h1 { font-size: 2.2rem; }
+    nav ul li { margin: 0 1rem; }
+    main { padding: 2.5rem 1.5rem; }
+    .content { padding: 1.5rem; }
+    h2 { font-size: 1.8rem; }
+    #about-content { max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-    header {
-        padding: 1.5rem 1rem;
-    }
-
-    header h1 {
-        font-size: 1.8rem;
-    }
-
-    nav ul {
-        margin-top: 1rem;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 0.75rem 0;
-    }
-
-    main {
-        padding: 2rem 1rem;
-    }
-
-    .content {
-        padding: 1.2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .project-item {
-        padding: 1rem;
-    }
-
-    form {
-        max-width: 100%;
-    }
-
-    input, textarea, button {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        padding: 1rem;
-        position: relative;
-    }
+    header { padding: 1.5rem 1rem; }
+    header h1 { font-size: 1.8rem; }
+    nav ul { margin-top: 1rem; }
+    nav ul li { display: block; margin: 0.75rem 0; }
+    main { padding: 2rem 1rem; }
+    .content { padding: 1.2rem; }
+    h2 { font-size: 1.5rem; }
+    .project-item { padding: 1rem; }
+    form { max-width: 100%; }
+    input, textarea, button { font-size: 0.9rem; }
+    footer { padding: 1rem; position: relative; }
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 1rem 0.5rem;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav ul {
-        margin-top: 0.5rem;
-    }
-
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-
-    nav a {
-        font-size: 0.9rem;
-    }
-
-    main {
-        padding: 1.5rem 0.5rem;
-    }
-
-    .content {
-        padding: 1rem;
-        border-radius: 8px;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    #about-content {
-        font-size: 1rem;
-    }
-
-    .project-item {
-        padding: 0.8rem;
-        margin: 0.5rem 0;
-    }
-
-    .project-item h3 {
-        font-size: 1.1rem;
-    }
-
-    .project-item p {
-        font-size: 0.9rem;
-    }
-
-    input, textarea, button {
-        padding: 0.6rem;
-        margin: 0.5rem 0;
-    }
-
-    textarea {
-        min-height: 100px;
-    }
-
-    button {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
+    header { padding: 1rem 0.5rem; }
+    header h1 { font-size: 1.5rem; }
+    nav ul { margin-top: 0.5rem; }
+    nav ul li { margin: 0.5rem 0; }
+    nav a { font-size: 0.9rem; }
+    main { padding: 1.5rem 0.5rem; }
+    .content { padding: 1rem; border-radius: 8px; }
+    h2 { font-size: 1.3rem; }
+    #about-content { font-size: 1rem; }
+    .project-item { padding: 0.8rem; margin: 0.5rem 0; }
+    .project-item h3 { font-size: 1.1rem; }
+    .project-item p { font-size: 0.9rem; }
+    input, textarea, button { padding: 0.6rem; margin: 0.5rem 0; }
+    textarea { min-height: 100px; }
+    button { font-size: 0.9rem; }
+    footer { padding: 0.8rem; font-size: 0.9rem; }
 }

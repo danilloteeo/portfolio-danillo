@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Danillo Teodoro</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -12,6 +13,8 @@
         <nav>
             <ul>
                 <li><a href="#sobre" onclick="showSection('sobre')">Sobre</a></li>
+                <li><a href="#habilidades" onclick="showSection('habilidades')">Habilidades</a></li>
+                <li><a href="#experiencia" onclick="showSection('experiencia')">Experiência</a></li>
                 <li><a href="#projetos" onclick="showSection('projetos')">Projetos</a></li>
                 <li><a href="#contato" onclick="showSection('contato')">Contato</a></li>
             </ul>
@@ -21,25 +24,43 @@
     <main>
         <section id="sobre" class="content active">
             <h2>Sobre Mim</h2>
-            <div id="about-content">
-            </div>
+            <div id="about-content"></div>
+        </section>
+
+        <section id="habilidades" class="content">
+            <h2>Minhas Habilidades</h2>
+            <div id="skills-list"></div>
+        </section>
+
+        <section id="experiencia" class="content">
+            <h2>Experiência Profissional</h2>
+            <div id="experience-list"></div>
         </section>
 
         <section id="projetos" class="content">
             <h2>Projetos</h2>
-            <div id="project-list">
+            <div class="filter-buttons">
+                <button onclick="filterProjects('all')">Todos</button>
+                <button onclick="filterProjects('web')">Web</button>
+                <button onclick="filterProjects('database')">Banco de Dados</button>
             </div>
-            <button onclick="addProject()">Adicionar Projeto</button>
+            <div id="project-list"></div>
+            <button onclick="addProject()" class="add-project-btn">Adicionar Projeto</button>
         </section>
 
         <section id="contato" class="content">
             <h2>Contato</h2>
             <form id="contact-form">
-                <input type="text" placeholder="Nome" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Mensagem" required></textarea>
+                <input type="text" placeholder="Nome" required aria-label="Nome">
+                <input type="email" placeholder="Email" required aria-label="Email">
+                <textarea placeholder="Mensagem" required aria-label="Mensagem"></textarea>
                 <button type="submit">Enviar</button>
             </form>
+            <div class="social-links">
+                <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:seu-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
         </section>
     </main>
 
