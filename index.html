@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Danillo Teodoro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Danillo Teodoro</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre" onclick="showSection('sobre')">Sobre</a></li>
+                <li><a href="#projetos" onclick="showSection('projetos')">Projetos</a></li>
+                <li><a href="#contato" onclick="showSection('contato')">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sobre" class="content active">
+            <h2>Sobre Mim</h2>
+            <div id="about-content">
+            </div>
+        </section>
+
+        <section id="projetos" class="content">
+            <h2>Projetos</h2>
+            <div id="project-list">
+            </div>
+            <button onclick="addProject()">Adicionar Projeto</button>
+        </section>
+
+        <section id="contato" class="content">
+            <h2>Contato</h2>
+            <form id="contact-form">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Danillo Teodoro</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
