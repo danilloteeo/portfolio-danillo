@@ -488,6 +488,7 @@ footer {
     font-size: 1.1rem;
 }
 
+/* Animações */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -498,6 +499,7 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Responsividade */
 @media (max-width: 1024px) {
     header h1 { font-size: 2.4rem; }
     nav ul li { margin: 0 1rem; }

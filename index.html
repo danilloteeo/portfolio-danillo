@@ -6,7 +6,7 @@
     <title>Portfólio - Danillo Teodoro</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -15,8 +15,11 @@
             <button id="theme-toggle" aria-label="Alternar tema claro/escuro">
                 <i class="fas fa-moon"></i>
             </button>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de navegação">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="#sobre" onclick="showSection('sobre')">Sobre</a></li>
                 <li><a href="#habilidades" onclick="showSection('habilidades')">Habilidades</a></li>
@@ -41,7 +44,7 @@
         </section>
 
         <section id="experiencia" class="content">
-            <h2>Experiência</h2>
+            <h2>Experiência Profissional</h2>
             <div id="experience-list"></div>
         </section>
 
@@ -70,16 +73,16 @@
                 <button type="submit">Enviar</button>
             </form>
             <div class="social-links">
-                <a href="https://github.com/danilloteeo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/danillo-teodoro-48a89b294/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:contatodanilloteeo@hotmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:seu-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </section>
     </main>
 
     <div id="project-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeProjectModal()">&times;</span>
+            <span class="close-modal" onclick="closeProjectModal()">×</span>
             <h3>Adicionar Novo Projeto</h3>
             <form id="project-form">
                 <input type="text" id="project-title" placeholder="Título" required>
