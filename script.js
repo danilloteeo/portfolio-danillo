@@ -106,13 +106,13 @@ const experiences = [
     {
         title: "Atendente ao Sistema",
         company: "Lampa Software",
-        period: "2023 - Presente",
+        period: "2024 - Presente",
         description: "Atuo no suporte ao sistema de controle rural, editando tabelas no banco de dados e aprendendo sobre desenvolvimento de software."
     },
     {
         title: "Estudante de Java",
         company: "DIO (Bootcamp Santander)",
-        period: "2025 - Presente",
+        period: "2024 - Presente",
         description: "Estudando Java e desenvolvendo projetos práticos para aprimorar minhas habilidades de programação."
     },
     {
@@ -143,7 +143,7 @@ const certificates = [
     {
         title: "Bootcamp Java - Santander",
         issuer: "DIO",
-        year: "2025",
+        year: "2024",
         link: "https://link-do-certificado.com"
     }
 ];
@@ -187,7 +187,7 @@ function displayProjects(filteredProjects = projects) {
         setTimeout(() => {
             projectList.innerHTML = filteredProjects.map((project, index) => `
                 <div class="project-item project-card bg-white rounded-lg shadow-lg p-3 sm:p-4 lg:p-6 transition-transform duration-300 hover:shadow-xl" data-category="${project.category}" data-aos="fade-up">
-                    ${project.image ? `<img src="${project.image}" alt="${project.title}" class="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-md mb-2 sm:mb-3 lg:mb-4 hover:scale-105 transition-transform duration-300">` : ''}
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-md mb-2 sm:mb-3 lg:mb-4 hover:scale-105 transition-transform duration-300">` : ''}
                     <h3 class="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">${project.title}</h3>
                     <p class="text-gray-600 mb-2 sm:mb-3 lg:mb-4 line-clamp-3 text-xs sm:text-sm lg:text-base">${project.description}</p>
                     <small class="text-gray-500 block mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-xs lg:text-sm">Categoria: ${project.category === 'web' ? 'Web' : 'Banco de Dados'}</small>

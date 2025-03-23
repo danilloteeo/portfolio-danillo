@@ -7,11 +7,23 @@
     <meta name="description" content="Portfólio de Danillo Teodoro, desenvolvedor em formação com experiência em Java, HTML, CSS, JavaScript e banco de dados.">
     <meta name="keywords" content="Danillo Teodoro, portfólio, desenvolvedor, Java, HTML, CSS, JavaScript, banco de dados">
     <meta name="author" content="Danillo Teodoro">
+    <meta property="og:title" content="Portfólio - Danillo Teodoro">
+    <meta property="og:description" content="Conheça meus projetos e habilidades como desenvolvedor.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/edicao-tabelas.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
         [data-theme="dark"] {
             background-color: #1a1a1a;
             color: #d1d5db;
@@ -75,6 +87,10 @@
             color: #ffd700;
             font-weight: bold;
         }
+        button:focus, a:focus {
+            outline: 2px solid #ffd700;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-gray-100" :data-theme="theme">
@@ -83,10 +99,10 @@
     </div>
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg p-4 sm:p-6 max-w-[90vw] sm:max-w-md w-full mx-4 relative max-h-[80vh] overflow-y-auto">
-            <button id="close-modal" class="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-600 hover:text-gray-900">
+            <button id="close-modal" class="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-600 hover:text-gray-900" aria-label="Fechar modal">
                 <i class="fas fa-times text-lg sm:text-2xl"></i>
             </button>
-            <img id="modal-image" src="" alt="Imagem do Projeto" class="w-full h-40 sm:h-48 object-cover rounded-md mb-3 sm:mb-4">
+            <img id="modal-image" src="" alt="Imagem do Projeto" loading="lazy" class="w-full h-40 sm:h-48 object-cover rounded-md mb-3 sm:mb-4">
             <h3 id="modal-title" class="text-lg sm:text-2xl font-semibold text-gray-900 mb-2"></h3>
             <p id="modal-description" class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base"></p>
             <small id="modal-category" class="text-gray-500 text-xs sm:text-sm"></small>
@@ -97,7 +113,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2 sm:py-3">
                 <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">Danillo Teodoro</h1>
                 <div class="flex items-center space-x-2 sm:space-x-4">
-                    <button @click="toggleTheme" aria-label="Alternar tema claro/escuro" class="text-lg sm:text-xl lg:text-2xl hover:text-yellow-500 transition-transform duration-500">
+                    <button @click="toggleTheme" aria-label="Alternar tema claro/escuro" class="text-lg sm:text-xl lg:text-2xl hover:text-yellow-500 transition-transform duration-500 hover:scale-105">
                         <i :class="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'"></i>
                     </button>
                     <button @click="toggleMenu" class="md:hidden text-lg sm:text-xl lg:text-2xl" aria-label="Abrir menu de navegação">
@@ -147,25 +163,25 @@
             </section>
             <section id="contato" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Contato</h2>
-                <form id="contact-form" class="max-w-md mx-auto space-y-3 sm:space-y-4 lg:space-y-5">
+                <form id="contact-form" action="https://formspree.io/f/seu-endpoint" method="POST" class="max-w-md mx-auto space-y-3 sm:space-y-4 lg:space-y-5">
                     <div class="relative">
                         <i class="fas fa-user absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm lg:text-base"></i>
-                        <input type="text" placeholder="Nome" required aria-label="Nome" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-xs sm:text-sm lg:text-base">
+                        <input type="text" name="nome" placeholder="Nome" required aria-label="Nome" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-xs sm:text-sm lg:text-base">
                     </div>
                     <div class="relative">
                         <i class="fas fa-envelope absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm lg:text-base"></i>
-                        <input type="email" placeholder="Email" required aria-label="Email" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-xs sm:text-sm lg:text-base">
+                        <input type="email" name="email" placeholder="Email" required aria-label="Email" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-xs sm:text-sm lg:text-base">
                     </div>
                     <div class="relative">
                         <i class="fas fa-comment absolute left-3 sm:left-4 top-4 sm:top-5 text-gray-500 text-xs sm:text-sm lg:text-base"></i>
-                        <textarea placeholder="Mensagem" required aria-label="Mensagem" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 min-h-[100px] sm:min-h-[120px] lg:min-h-[150px] text-xs sm:text-sm lg:text-base"></textarea>
+                        <textarea name="mensagem" placeholder="Mensagem" required aria-label="Mensagem" class="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-1 sm:py-2 lg:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 min-h-[100px] sm:min-h-[120px] lg:min-h-[150px] text-xs sm:text-sm lg:text-base"></textarea>
                     </div>
                     <button type="submit" class="w-full py-1 sm:py-2 lg:py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-lg duration-300 flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base">
                         <i class="fas fa-paper-plane text-xs sm:text-sm lg:text-base"></i> Enviar
                     </button>
                 </form>
                 <div class="social-links flex justify-center space-x-3 sm:space-x-4 lg:space-x-6 mt-4 sm:mt-6 lg:mt-8">
-                    <a href="https://github.com/danilloteeo" target="_blank" aria-label="GitHub" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:seu-email@example.com" aria-label="Email" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fas fa-envelope"></i></a>
                 </div>
@@ -175,7 +191,7 @@
             <i class="fas fa-chevron-up"></i>
         </button>
         <footer class="bg-gray-900 text-white text-center py-3 sm:py-4 lg:py-6">
-            <p class="text-xs sm:text-sm lg:text-base">© 2025 Danillo Teodoro | <a href="https://github.com/danilloteeo" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">GitHub</a></p>
+            <p class="text-xs sm:text-sm lg:text-base">© 2025 Danillo Teodoro | <a href="https://github.com/danilloteo" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">GitHub</a> | <a href="mailto:seu-email@example.com" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">Envie seu feedback</a></p>
         </footer>
     </div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
