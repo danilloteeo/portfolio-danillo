@@ -4,6 +4,48 @@ AOS.init({
     once: true,
 });
 
+const app = Vue.createApp({
+    data() {
+        return {
+            theme: localStorage.getItem('theme') || 'light', // Tema inicial
+            isMenuOpen: false 
+        };
+    },
+    methods: {
+        toggleTheme() {
+            console.log('Trocando tema...');
+            this.theme = this.theme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', this.theme);
+            document.body.setAttribute('data-theme', this.theme);
+            AOS.refresh(); 
+        },
+        toggleMenu() {
+            console.log('Trocando estado do menu...');
+            this.isMenuOpen = !this.isMenuOpen;
+        },
+        showSection(sectionId) {
+            console.log(`Exibindo seção: ${sectionId}`);
+            this.isMenuOpen = false; 
+            showSection(sectionId); 
+        },
+        handleResize() {
+            if (window.innerWidth >= 768) { 
+                this.isMenuOpen = false;
+            }
+        }
+    },
+    mounted() {
+        document.body.setAttribute('data-theme', this.theme);
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    beforeUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+app.mount('#app');
+
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content');
     
@@ -39,68 +81,6 @@ function showSection(sectionId) {
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 300);
-
-    const nav = document.getElementById('nav-menu');
-    if (nav && window.innerWidth <= 768) {
-        nav.classList.remove('block');
-        nav.classList.add('hidden');
-    }
-}
-
-const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        console.log('Botão de troca de tema clicado');
-        const body = document.body;
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-theme', newTheme);
-        themeToggle.innerHTML = `<i class="fas ${newTheme === 'dark' ? 'fa-sun' : 'fa-moon'}"></i>`;
-        localStorage.setItem('theme', newTheme);
-
-        AOS.refresh();
-    });
-} else {
-    console.error('Botão theme-toggle não encontrado no DOM');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.innerHTML = `<i class="fas ${savedTheme === 'dark' ? 'fa-sun' : 'fa-moon'}"></i>`;
-    }
-});
-
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-        console.log('Botão de menu hamburguer clicado');
-        navMenu.classList.toggle('hidden');
-        navMenu.classList.toggle('block');
-        const icon = menuToggle.querySelector('i');
-        if (navMenu.classList.contains('block')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            navMenu.classList.remove('block');
-            navMenu.classList.add('hidden');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-} else {
-    console.error('Menu toggle ou nav-menu não encontrados no DOM');
 }
 
 const aboutInfo = {
@@ -129,9 +109,9 @@ function displaySkills() {
     const skillsList = document.getElementById('skills-list');
     if (skillsList) {
         skillsList.innerHTML = skills.map(skill => `
-            <div class="skill-item flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
-                <i class="${skill.icon} text-2xl sm:text-3xl text-gray-900"></i>
-                <span class="text-base sm:text-lg font-medium text-gray-700">${skill.name}</span>
+            <div class="skill-item flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-2 sm:p-3 lg:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
+                <i class="${skill.icon} text-lg sm:text-2xl lg:text-3xl text-gray-900"></i>
+                <span class="text-xs sm:text-base lg:text-lg font-medium text-gray-700">${skill.name}</span>
             </div>
         `).join('');
     }
@@ -141,13 +121,13 @@ const experiences = [
     {
         title: "Atendente ao Sistema",
         company: "Lampa Software",
-        period: "2023 - Presente",
+        period: "2024 - Presente",
         description: "Atuo no suporte ao sistema de controle rural, editando tabelas no banco de dados e aprendendo sobre desenvolvimento de software."
     },
     {
         title: "Estudante de Java",
         company: "DIO (Bootcamp Santander)",
-        period: "2025 - Presente",
+        period: "2024 - Presente",
         description: "Estudando Java e desenvolvendo projetos práticos para aprimorar minhas habilidades de programação."
     },
     {
@@ -162,12 +142,12 @@ function displayExperience() {
     const experienceList = document.getElementById('experience-list');
     if (experienceList) {
         experienceList.innerHTML = experiences.map(exp => `
-            <div class="experience-item flex space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
-                <i class="fas fa-briefcase text-2xl sm:text-3xl text-gray-900"></i>
+            <div class="experience-item flex space-x-2 sm:space-x-3 lg:space-x-4 p-2 sm:p-3 lg:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
+                <i class="fas fa-briefcase text-lg sm:text-2xl lg:text-3xl text-gray-900"></i>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900">${exp.title} - ${exp.company}</h3>
-                    <p class="text-xs sm:text-sm text-gray-500 italic">${exp.period}</p>
-                    <p class="text-gray-600 text-sm sm:text-base">${exp.description}</p>
+                    <h3 class="text-base sm:text-lg lg:text-xl font-semibold text-gray-900">${exp.title} - ${exp.company}</h3>
+                    <p class="text-xs sm:text-sm lg:text-sm text-gray-500 italic">${exp.period}</p>
+                    <p class="text-gray-600 text-xs sm:text-sm lg:text-base">${exp.description}</p>
                 </div>
             </div>
         `).join('');
@@ -178,7 +158,7 @@ const certificates = [
     {
         title: "Bootcamp Java - Santander",
         issuer: "DIO",
-        year: "2025",
+        year: "2024",
         link: "https://link-do-certificado.com"
     }
 ];
@@ -187,12 +167,12 @@ function displayCertificates() {
     const certificatesList = document.getElementById('certificates-list');
     if (certificatesList) {
         certificatesList.innerHTML = certificates.map(cert => `
-            <div class="certificate-item flex space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
-                <i class="fas fa-certificate text-2xl sm:text-3xl text-gray-900"></i>
+            <div class="certificate-item flex space-x-2 sm:space-x-3 lg:space-x-4 p-2 sm:p-3 lg:p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition-colors duration-300" data-aos="fade-right">
+                <i class="fas fa-certificate text-lg sm:text-2xl lg:text-3xl text-gray-900"></i>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900">${cert.title}</h3>
-                    <p class="text-gray-600 text-sm sm:text-base">Emitido por: ${cert.issuer} - ${cert.year}</p>
-                    <a href="${cert.link}" target="_blank" class="text-gray-900 hover:text-gray-700 underline text-sm sm:text-base">Ver Certificado</a>
+                    <h3 class="text-base sm:text-lg lg:text-xl font-semibold text-gray-900">${cert.title}</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm lg:text-base">Emitido por: ${cert.issuer} - ${cert.year}</p>
+                    <a href="${cert.link}" target="_blank" class="text-gray-900 hover:text-gray-700 underline text-xs sm:text-sm lg:text-base">Ver Certificado</a>
                 </div>
             </div>
         `).join('');
@@ -204,7 +184,7 @@ let projects = JSON.parse(localStorage.getItem('projects')) || [
         title: "Edição de Tabelas", 
         description: "Edição de tabelas no banco de dados do sistema de controle rural da Lampa Software", 
         category: "database", 
-        image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/app.png"
+        image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/edicao-tabelas.png"
     },
     { 
         title: "Estudos Java", 
@@ -222,13 +202,13 @@ function displayProjects(filteredProjects = projects) {
 
         setTimeout(() => {
             projectList.innerHTML = filteredProjects.map((project, index) => `
-                <div class="project-item project-card bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-transform duration-300 hover:shadow-xl" data-category="${project.category}" data-aos="fade-up">
-                    ${project.image ? `<img src="${project.image}" alt="${project.title}" class="w-full h-40 sm:h-48 object-cover rounded-md mb-3 sm:mb-4 hover:scale-105 transition-transform duration-300">` : ''}
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-2">${project.title}</h3>
-                    <p class="text-gray-600 mb-3 sm:mb-4 line-clamp-3 text-sm sm:text-base">${project.description}</p>
-                    <small class="text-gray-500 block mb-3 sm:mb-4 text-xs sm:text-sm">Categoria: ${project.category === 'web' ? 'Web' : 'Banco de Dados'}</small>
-                    <button onclick="openProjectModal(${index})" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-sm text-sm sm:text-base">
-                        <i class="fas fa-eye mr-2"></i> Ver Detalhes
+                <div class="project-item project-card bg-white rounded-lg shadow-lg p-3 sm:p-4 lg:p-6 transition-transform duration-300 hover:shadow-xl" data-category="${project.category}" data-aos="fade-up">
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}" class="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-md mb-2 sm:mb-3 lg:mb-4 hover:scale-105 transition-transform duration-300">` : ''}
+                    <h3 class="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">${project.title}</h3>
+                    <p class="text-gray-600 mb-2 sm:mb-3 lg:mb-4 line-clamp-3 text-xs sm:text-sm lg:text-base">${project.description}</p>
+                    <small class="text-gray-500 block mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-xs lg:text-sm">Categoria: ${project.category === 'web' ? 'Web' : 'Banco de Dados'}</small>
+                    <button onclick="openProjectModal(${index})" class="inline-flex items-center px-2 sm:px-3 lg:px-4 py-1 sm:py-1 lg:py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-sm text-xs sm:text-sm lg:text-base">
+                        <i class="fas fa-eye mr-1 sm:mr-2 text-xs sm:text-sm lg:text-base"></i> Ver Detalhes
                     </button>
                 </div>
             `).join('');
@@ -315,8 +295,8 @@ if (backToTop) {
     });
 }
 
-
 window.onload = function() {
+    // Simular carregamento assíncrono
     setTimeout(() => {
         const loadingSpinner = document.getElementById('loading-spinner');
         if (loadingSpinner) {
