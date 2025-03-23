@@ -204,7 +204,7 @@ let projects = JSON.parse(localStorage.getItem('projects')) || [
         title: "Edição de Tabelas", 
         description: "Edição de tabelas no banco de dados do sistema de controle rural da Lampa Software", 
         category: "database", 
-        image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/edicao-tabelas.png"
+        image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/app.png"
     },
     { 
         title: "Estudos Java", 
