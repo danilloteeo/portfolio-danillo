@@ -4,87 +4,207 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Danillo Teodoro</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Portfólio de Danillo Teodoro, desenvolvedor em formação com experiência em Java, HTML, CSS, JavaScript e banco de dados.">
+    <meta name="keywords" content="Danillo Teodoro, portfólio, desenvolvedor, Java, HTML, CSS, JavaScript, banco de dados">
+    <meta name="author" content="Danillo Teodoro">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        [data-theme="dark"] {
+            background-color: #1a1a1a;
+            color: #d1d5db;
+        }
+        [data-theme="dark"] h2 {
+            color: #ffd700;
+        }
+        [data-theme="dark"] .project-card h3 {
+            color: #ffd700;
+        }
+        [data-theme="dark"] .project-card p {
+            color: #b0b0b0;
+        }
+        [data-theme="dark"] .project-card small {
+            color: #9ca3af;
+        }
+        [data-theme="dark"] input,
+        [data-theme="dark"] textarea {
+            background: #3a3a3a;
+            color: #d1d5db;
+            border-color: #4b5563;
+        }
+        [data-theme="dark"] .social-links a {
+            color: #ffd700;
+        }
+        [data-theme="dark"] .social-links a:hover {
+            color: #ffeb3b;
+        }
+        #nav-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        #nav-menu.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            display: none;
+        }
+        #nav-menu.block {
+            transform: translateY(0);
+            opacity: 1;
+            display: block;
+        }
+        #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        #loading-spinner.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #project-modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #project-modal.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        #project-modal:not(.hidden) {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        nav ul li a.active {
+            background-color: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            font-weight: bold;
+        }
+        #theme-toggle, #menu-toggle {
+            display: inline-block;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="header-container">
-            <h1>Danillo Teodoro</h1>
-            <button id="theme-toggle" aria-label="Alternar tema claro/escuro">
-                <i class="fas fa-moon"></i>
+<body class="font-sans antialiased bg-gray-100" data-theme="light">
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="flex items-center justify-center">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-gray-900"></div>
+    </div>
+
+    <!-- Modal para detalhes do projeto -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-4 sm:p-6 max-w-md w-full mx-4 relative max-h-[90vh] overflow-y-auto">
+            <button id="close-modal" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">
+                <i class="fas fa-times text-xl sm:text-2xl"></i>
             </button>
-            <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de navegação">
-                <i class="fas fa-bars"></i>
-            </button>
+            <img id="modal-image" src="" alt="Imagem do Projeto" class="w-full h-48 sm:h-64 object-cover rounded-md mb-4">
+            <h3 id="modal-title" class="text-xl sm:text-2xl font-semibold text-gray-900 mb-2"></h3>
+            <p id="modal-description" class="text-gray-600 mb-4 text-sm sm:text-base"></p>
+            <small id="modal-category" class="text-gray-500 text-sm sm:text-base"></small>
         </div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="#sobre" onclick="showSection('sobre')">Sobre</a></li>
-                <li><a href="#habilidades" onclick="showSection('habilidades')">Habilidades</a></li>
-                <li><a href="#experiencia" onclick="showSection('experiencia')">Experiência</a></li>
-                <li><a href="#projetos" onclick="showSection('projetos')">Projetos</a></li>
-                <li><a href="#certificados" onclick="showSection('certificados')">Certificados</a></li>
-                <li><a href="#contato" onclick="showSection('contato')">Contato</a></li>
+    </div>
+
+    <header class="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-3 sm:py-4">
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Danillo Teodoro</h1>
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <button id="theme-toggle" aria-label="Alternar tema claro/escuro" class="text-xl sm:text-2xl hover:text-yellow-500 transition-transform duration-500">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="menu-toggle" class="md:hidden text-xl sm:text-2xl" aria-label="Abrir menu de navegação">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <nav id="nav-menu" class="hidden md:block bg-gray-900">
+            <ul class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row flex-wrap justify-center gap-2 sm:gap-4 py-2">
+                <li><a href="#sobre" onclick="showSection('sobre')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Saiba mais sobre mim"><i class="fas fa-user"></i><span>Sobre</span></a></li>
+                <li><a href="#habilidades" onclick="showSection('habilidades')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Minhas habilidades técnicas"><i class="fas fa-tools"></i><span>Habilidades</span></a></li>
+                <li><a href="#experiencia" onclick="showSection('experiencia')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Minha experiência profissional"><i class="fas fa-briefcase"></i><span>Experiência</span></a></li>
+                <li><a href="#projetos" onclick="showSection('projetos')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Projetos que desenvolvi"><i class="fas fa-code"></i><span>Projetos</span></a></li>
+                <li><a href="#certificados" onclick="showSection('certificados')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Meus certificados"><i class="fas fa-certificate"></i><span>Certificados</span></a></li>
+                <li><a href="#contato" onclick="showSection('contato')" class="flex items-center space-x-2 text-white hover:text-yellow-500 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-colors text-sm sm:text-base" data-tooltip="Entre em contato comigo"><i class="fas fa-envelope"></i><span>Contato</span></a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="sobre" class="content active">
-            <h2>Sobre Mim</h2>
-            <div id="about-content"></div>
-            <a href="curriculo.pdf" download class="download-btn">Baixar Currículo <i class="fas fa-download"></i></a>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <section id="sobre" class="content active bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Sobre Mim</h2>
+            <div id="about-content" class="text-base sm:text-lg text-gray-700 leading-relaxed"></div>
+            <a href="curriculo.pdf" download class="inline-flex items-center mt-4 sm:mt-6 px-4 sm:px-6 py-2 sm:py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-lg text-sm sm:text-base">
+                <i class="fas fa-download mr-2"></i> Baixar Currículo
+            </a>
         </section>
 
-        <section id="habilidades" class="content">
-            <h2>Minhas Habilidades</h2>
+        <section id="habilidades" class="content hidden bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Minhas Habilidades</h2>
             <div id="skills-list"></div>
         </section>
 
-        <section id="experiencia" class="content">
-            <h2>Experiência Profissional</h2>
+        <section id="experiencia" class="content hidden bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Experiência Profissional</h2>
             <div id="experience-list"></div>
         </section>
 
-        <section id="projetos" class="content">
-            <h2>Projetos</h2>
-            <div class="filter-buttons">
-                <button onclick="filterProjects('all')" class="active">Todos</button>
-                <button onclick="filterProjects('web')">Web</button>
-                <button onclick="filterProjects('database')">Banco de Dados</button>
+        <section id="projetos" class="content hidden bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Projetos</h2>
+            <div class="filter-buttons flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+                <button onclick="filterProjects('all')" class="active px-4 sm:px-6 py-1 sm:py-2 bg-gray-200 text-gray-800 font-semibold rounded-full hover:bg-gray-900 hover:text-white transition-colors duration-300 shadow-sm text-sm sm:text-base">Todos</button>
+                <button onclick="filterProjects('web')" class="px-4 sm:px-6 py-1 sm:py-2 bg-gray-200 text-gray-800 font-semibold rounded-full hover:bg-gray-900 hover:text-white transition-colors duration-300 shadow-sm text-sm sm:text-base">Web</button>
+                <button onclick="filterProjects('database')" class="px-4 sm:px-6 py-1 sm:py-2 bg-gray-200 text-gray-800 font-semibold rounded-full hover:bg-gray-900 hover:text-white transition-colors duration-300 shadow-sm text-sm sm:text-base">Banco de Dados</button>
             </div>
-            <div id="project-list"></div>
+            <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
         </section>
 
-        <section id="certificados" class="content">
-            <h2>Certificados</h2>
+        <section id="certificados" class="content hidden bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Certificados</h2>
             <div id="certificates-list"></div>
         </section>
 
-        <section id="contato" class="content">
-            <h2>Contato</h2>
-            <form id="contact-form">
-                <input type="text" placeholder="Nome" required aria-label="Nome">
-                <input type="email" placeholder="Email" required aria-label="Email">
-                <textarea placeholder="Mensagem" required aria-label="Mensagem"></textarea>
-                <button type="submit">Enviar</button>
+        <section id="contato" class="content hidden bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6 sm:mb-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Contato</h2>
+            <form id="contact-form" class="max-w-lg mx-auto space-y-4 sm:space-y-5">
+                <div class="relative">
+                    <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" placeholder="Nome" required aria-label="Nome" class="w-full pl-12 pr-4 py-2 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-sm sm:text-base">
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    <input type="email" placeholder="Email" required aria-label="Email" class="w-full pl-12 pr-4 py-2 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 text-sm sm:text-base">
+                </div>
+                <div class="relative">
+                    <i class="fas fa-comment absolute left-4 top-5 text-gray-500"></i>
+                    <textarea placeholder="Mensagem" required aria-label="Mensagem" class="w-full pl-12 pr-4 py-2 sm:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all duration-300 min-h-[120px] sm:min-h-[150px] text-sm sm:text-base"></textarea>
+                </div>
+                <button type="submit" class="w-full py-2 sm:py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-lg duration-300 flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
             </form>
-            <div class="social-links">
-                <a href="https://github.com/danilloteeo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:seu-email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <div class="social-links flex justify-center space-x-4 sm:space-x-6 mt-6 sm:mt-8">
+                <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub" class="text-gray-900 hover:text-gray-700 text-2xl sm:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn" class="text-gray-900 hover:text-gray-700 text-2xl sm:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:seu-email@example.com" aria-label="Email" class="text-gray-900 hover:text-gray-700 text-2xl sm:text-3xl transition-transform hover:scale-110 duration-300"><i class="fas fa-envelope"></i></a>
             </div>
         </section>
     </main>
 
-    <button id="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-chevron-up"></i></button>
+    <button id="back-to-top" aria-label="Voltar ao topo" class="fixed bottom-6 sm:bottom-10 right-6 sm:right-10 bg-gray-900 text-white rounded-full w-12 sm:w-14 h-12 sm:h-14 flex items-center justify-center text-xl sm:text-2xl opacity-0 transition-all duration-300 hover:bg-gray-800 hover:scale-110">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-    <footer>
-        <p>© 2025 Danillo Teodoro | <a href="https://github.com/danilloteeo" target="_blank">GitHub</a></p>
+    <footer class="bg-gray-900 text-white text-center py-4 sm:py-6">
+        <p class="text-sm sm:text-base">© 2025 Danillo Teodoro | <a href="https://github.com/danilloteo" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">GitHub</a></p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
