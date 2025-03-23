@@ -106,13 +106,13 @@ const experiences = [
     {
         title: "Atendente ao Sistema",
         company: "Lampa Software",
-        period: "2024 - Presente",
+        period: "2023 - Presente",
         description: "Atuo no suporte ao sistema de controle rural, editando tabelas no banco de dados e aprendendo sobre desenvolvimento de software."
     },
     {
         title: "Estudante de Java",
         company: "DIO (Bootcamp Santander)",
-        period: "2024 - Presente",
+        period: "2025 - Presente",
         description: "Estudando Java e desenvolvendo projetos práticos para aprimorar minhas habilidades de programação."
     },
     {
@@ -143,7 +143,7 @@ const certificates = [
     {
         title: "Bootcamp Java - Santander",
         issuer: "DIO",
-        year: "2024",
+        year: "2025",
         link: "https://link-do-certificado.com"
     }
 ];
