@@ -81,7 +81,6 @@
     <div id="loading-spinner" class="flex items-center justify-center">
         <div class="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-t-4 border-gray-900"></div>
     </div>
-
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg p-4 sm:p-6 max-w-[90vw] sm:max-w-md w-full mx-4 relative max-h-[80vh] overflow-y-auto">
             <button id="close-modal" class="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-600 hover:text-gray-900">
@@ -93,7 +92,6 @@
             <small id="modal-category" class="text-gray-500 text-xs sm:text-sm"></small>
         </div>
     </div>
-
     <div id="app">
         <header class="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2 sm:py-3">
@@ -109,16 +107,15 @@
             </div>
             <nav :class="{ 'hidden': !isMenuOpen, 'block': isMenuOpen }" class="md:block bg-gray-900">
                 <ul class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row flex-wrap justify-center gap-1 sm:gap-2 lg:gap-4 py-1 sm:py-2">
-                    <li><a href="#sobre" @click="showSection('sobre')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Saiba mais sobre mim"><i class="fas fa-user text-xs sm:text-sm lg:text-base"></i><span>Sobre</span></a></li>
-                    <li><a href="#habilidades" @click="showSection('habilidades')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Minhas habilidades técnicas"><i class="fas fa-tools text-xs sm:text-sm lg:text-base"></i><span>Habilidades</span></a></li>
-                    <li><a href="#experiencia" @click="showSection('experiencia')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Minha experiência profissional"><i class="fas fa-briefcase text-xs sm:text-sm lg:text-base"></i><span>Experiência</span></a></li>
-                    <li><a href="#projetos" @click="showSection('projetos')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Projetos que desenvolvi"><i class="fas fa-code text-xs sm:text-sm lg:text-base"></i><span>Projetos</span></a></li>
-                    <li><a href="#certificados" @click="showSection('certificados')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Meus certificados"><i class="fas fa-certificate text-xs sm:text-sm lg:text-base"></i><span>Certificados</span></a></li>
-                    <li><a href="#contato" @click="showSection('contato')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base" data-tooltip="Entre em contato comigo"><i class="fas fa-envelope text-xs sm:text-sm lg:text-base"></i><span>Contato</span></a></li>
+                    <li><a href="#sobre" @click="showSection('sobre')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-user text-xs sm:text-sm lg:text-base"></i><span>Sobre</span></a></li>
+                    <li><a href="#habilidades" @click="showSection('habilidades')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-tools text-xs sm:text-sm lg:text-base"></i><span>Habilidades</span></a></li>
+                    <li><a href="#experiencia" @click="showSection('experiencia')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-briefcase text-xs sm:text-sm lg:text-base"></i><span>Experiência</span></a></li>
+                    <li><a href="#projetos" @click="showSection('projetos')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-code text-xs sm:text-sm lg:text-base"></i><span>Projetos</span></a></li>
+                    <li><a href="#certificados" @click="showSection('certificados')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-certificate text-xs sm:text-sm lg:text-base"></i><span>Certificados</span></a></li>
+                    <li><a href="#contato" @click="showSection('contato')" class="flex items-center space-x-1 sm:space-x-2 text-white hover:text-yellow-500 font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-md transition-colors text-xs sm:text-sm lg:text-base"><i class="fas fa-envelope text-xs sm:text-sm lg:text-base"></i><span>Contato</span></a></li>
                 </ul>
             </nav>
         </header>
-
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
             <section id="sobre" class="content active bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Sobre Mim</h2>
@@ -127,17 +124,14 @@
                     <i class="fas fa-download mr-1 sm:mr-2 text-xs sm:text-sm lg:text-base"></i> Baixar Currículo
                 </a>
             </section>
-
             <section id="habilidades" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Minhas Habilidades</h2>
                 <div id="skills-list" class="space-y-2 sm:space-y-3"></div>
             </section>
-
             <section id="experiencia" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Experiência Profissional</h2>
                 <div id="experience-list" class="space-y-2 sm:space-y-3"></div>
             </section>
-
             <section id="projetos" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Projetos</h2>
                 <div class="filter-buttons flex flex-wrap justify-center gap-1 sm:gap-2 lg:gap-3 mb-4 sm:mb-6 lg:mb-8">
@@ -147,12 +141,10 @@
                 </div>
                 <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"></div>
             </section>
-
             <section id="certificados" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Certificados</h2>
                 <div id="certificates-list" class="space-y-2 sm:space-y-3"></div>
             </section>
-
             <section id="contato" class="content hidden bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 lg:mb-8" data-aos="fade-up">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded">Contato</h2>
                 <form id="contact-form" class="max-w-md mx-auto space-y-3 sm:space-y-4 lg:space-y-5">
@@ -173,22 +165,19 @@
                     </button>
                 </form>
                 <div class="social-links flex justify-center space-x-3 sm:space-x-4 lg:space-x-6 mt-4 sm:mt-6 lg:mt-8">
-                    <a href="https://github.com/danilloteo" target="_blank" aria-label="GitHub" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/danilloteeo" target="_blank" aria-label="GitHub" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/seu-linkedin" target="_blank" aria-label="LinkedIn" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:seu-email@example.com" aria-label="Email" class="text-gray-900 hover:text-gray-700 text-xl sm:text-2xl lg:text-3xl transition-transform hover:scale-110 duration-300"><i class="fas fa-envelope"></i></a>
                 </div>
             </section>
         </main>
-
         <button id="back-to-top" aria-label="Voltar ao topo" class="fixed bottom-4 sm:bottom-6 lg:bottom-10 right-4 sm:right-6 lg:right-10 bg-gray-900 text-white rounded-full w-10 sm:w-12 lg:w-14 h-10 sm:h-12 lg:h-14 flex items-center justify-center text-lg sm:text-xl lg:text-2xl opacity-0 transition-all duration-300 hover:bg-gray-800 hover:scale-110">
             <i class="fas fa-chevron-up"></i>
         </button>
-
         <footer class="bg-gray-900 text-white text-center py-3 sm:py-4 lg:py-6">
-            <p class="text-xs sm:text-sm lg:text-base">© 2025 Danillo Teodoro | <a href="https://github.com/danilloteo" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">GitHub</a></p>
+            <p class="text-xs sm:text-sm lg:text-base">© 2025 Danillo Teodoro | <a href="https://github.com/danilloteeo" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors duration-300">GitHub</a></p>
         </footer>
     </div>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>

@@ -7,29 +7,26 @@ AOS.init({
 const app = Vue.createApp({
     data() {
         return {
-            theme: localStorage.getItem('theme') || 'light', // Tema inicial
-            isMenuOpen: false 
+            theme: localStorage.getItem('theme') || 'light',
+            isMenuOpen: false
         };
     },
     methods: {
         toggleTheme() {
-            console.log('Trocando tema...');
             this.theme = this.theme === 'light' ? 'dark' : 'light';
             localStorage.setItem('theme', this.theme);
             document.body.setAttribute('data-theme', this.theme);
-            AOS.refresh(); 
+            AOS.refresh();
         },
         toggleMenu() {
-            console.log('Trocando estado do menu...');
             this.isMenuOpen = !this.isMenuOpen;
         },
         showSection(sectionId) {
-            console.log(`Exibindo seção: ${sectionId}`);
-            this.isMenuOpen = false; 
-            showSection(sectionId); 
+            this.isMenuOpen = false;
+            showSection(sectionId);
         },
         handleResize() {
-            if (window.innerWidth >= 768) { 
+            if (window.innerWidth >= 768) {
                 this.isMenuOpen = false;
             }
         }
@@ -48,37 +45,25 @@ app.mount('#app');
 
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content');
-    
     sections.forEach(section => {
-        if (section.classList.contains('active')) {
-            section.classList.add('opacity-0');
-        }
+        if (section.classList.contains('active')) section.classList.add('opacity-0');
     });
-
     setTimeout(() => {
         sections.forEach(section => {
             section.classList.remove('active', 'hidden');
             section.classList.add('hidden', 'opacity-0');
         });
-
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
             targetSection.classList.remove('hidden');
             targetSection.classList.add('active', 'opacity-100');
-        } else {
-            console.error(`Seção com ID ${sectionId} não encontrada.`);
         }
-
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-                link.classList.add('active');
-            }
+            if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
         });
-
         AOS.refresh();
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 300);
 }
@@ -121,13 +106,13 @@ const experiences = [
     {
         title: "Atendente ao Sistema",
         company: "Lampa Software",
-        period: "2024 - Presente",
+        period: "2023 - Presente",
         description: "Atuo no suporte ao sistema de controle rural, editando tabelas no banco de dados e aprendendo sobre desenvolvimento de software."
     },
     {
         title: "Estudante de Java",
         company: "DIO (Bootcamp Santander)",
-        period: "2024 - Presente",
+        period: "2025 - Presente",
         description: "Estudando Java e desenvolvendo projetos práticos para aprimorar minhas habilidades de programação."
     },
     {
@@ -158,7 +143,7 @@ const certificates = [
     {
         title: "Bootcamp Java - Santander",
         issuer: "DIO",
-        year: "2024",
+        year: "2025",
         link: "https://link-do-certificado.com"
     }
 ];
@@ -199,7 +184,6 @@ function displayProjects(filteredProjects = projects) {
     if (projectList) {
         projectList.classList.remove('opacity-100');
         projectList.classList.add('opacity-0');
-
         setTimeout(() => {
             projectList.innerHTML = filteredProjects.map((project, index) => `
                 <div class="project-item project-card bg-white rounded-lg shadow-lg p-3 sm:p-4 lg:p-6 transition-transform duration-300 hover:shadow-xl" data-category="${project.category}" data-aos="fade-up">
@@ -226,13 +210,11 @@ function openProjectModal(index) {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     const modalCategory = document.getElementById('modal-category');
-
     if (modal && modalImage && modalTitle && modalDescription && modalCategory) {
         modalImage.src = project.image || 'https://via.placeholder.com/300x150';
         modalTitle.textContent = project.title;
         modalDescription.textContent = project.description;
         modalCategory.textContent = `Categoria: ${project.category === 'web' ? 'Web' : 'Banco de Dados'}`;
-
         modal.classList.remove('hidden');
     }
 }
@@ -260,7 +242,6 @@ function filterProjects(category) {
     const buttons = document.querySelectorAll('.filter-buttons button');
     buttons.forEach(btn => btn.classList.remove('active', 'bg-gray-900', 'text-white'));
     event.target.classList.add('active', 'bg-gray-900', 'text-white');
-
     if (category === 'all') {
         displayProjects();
     } else {
@@ -289,25 +270,22 @@ if (backToTop) {
             backToTop.classList.add('opacity-0');
         }
     });
-
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
 window.onload = function() {
-    // Simular carregamento assíncrono
     setTimeout(() => {
         const loadingSpinner = document.getElementById('loading-spinner');
         if (loadingSpinner) {
             loadingSpinner.classList.add('hidden');
         }
-
         showSection('sobre');
         displayAbout();
         displaySkills();
         displayExperience();
         displayCertificates();
         displayProjects();
-    }, 1000); 
+    }, 1000);
 };
