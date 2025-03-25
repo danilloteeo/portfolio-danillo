@@ -176,6 +176,12 @@ let projects = JSON.parse(localStorage.getItem('projects')) || [
         description: "Bootcamp Santander na DIO para aprendizado de Java", 
         category: "web", 
         image: "https://via.placeholder.com/300x150" 
+    },
+    {
+        title: "API que retorna valores Y dentro de um parâmetro X",
+        description: "API de gerenciamento de mapa",
+        category: "database",
+        image: "https://via.placeholder.com/300x150"
     }
 ];
 
