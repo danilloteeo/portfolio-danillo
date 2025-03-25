@@ -180,9 +180,8 @@ let projects = JSON.parse(localStorage.getItem('projects')) || [
     {
         title: "API que retorna valores Y dentro de um parâmetro X",
         description: "API de gerenciamento de mapa",
-        category: "database",
-        image: "https://via.placeholder.com/300x150"
-    }
+        category: "database"
+        }
 ];
 
 function displayProjects(filteredProjects = projects) {
