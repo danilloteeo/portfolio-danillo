@@ -171,12 +171,6 @@ let projects = JSON.parse(localStorage.getItem('projects')) || [
         category: "database", 
         image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/edicao-tabelas.png"
     },
-    { 
-        title: "Estudos Java", 
-        description: "Bootcamp Santander na DIO para aprendizado de Java", 
-        category: "web", 
-        image: "https://via.placeholder.com/300x150" 
-    },
     {
         title: "API que retorna valores Y dentro de um parâmetro X",
         description: "API de gerenciamento de mapa",
