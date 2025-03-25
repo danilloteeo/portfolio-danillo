@@ -167,14 +167,14 @@ function displayCertificates() {
 let projects = JSON.parse(localStorage.getItem('projects')) || [
     { 
         title: "Edição de Tabelas", 
-        description: "Edição de tabelas no banco de dados do sistema de controle rural da Lampa Software", 
+        description: "Edição de tabelas no banco de dados do sistema", 
         category: "database", 
         image: "https://raw.githubusercontent.com/danilloteo/portfolio-danillo/main/images/edicao-tabelas.png"
     },
     {
         title: "API que retorna valores Y dentro de um parâmetro X",
         description: "API de gerenciamento de mapa",
-        category: "database",
+        category: "API",
         image: "https://via.placeholder.com/300x150"
     }
 ];
